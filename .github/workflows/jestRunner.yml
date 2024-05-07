@@ -9,7 +9,7 @@ jobs:
 
     defaults:
         run: # specify working directory
-          working-directory: ice-Queb
+          working-directory: Ice-Queb
     steps:
       - uses: actions/checkout@v3
 
