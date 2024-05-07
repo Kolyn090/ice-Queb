@@ -96,7 +96,7 @@ Open folder “Ice-Quef” in an IDE or terminal.
 
 Run the following command:
 
-```jsx
+```bash
 npm install --force
 ```
 
@@ -150,7 +150,7 @@ POST /api/auth/login
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/auth/login", {
 	method: "POST",
 	headers: {
@@ -209,7 +209,7 @@ POST /api/auth/signup
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/auth/signup", {
     method: "POST",
     headers: {
@@ -270,7 +270,7 @@ POST /api/auth/reset
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/auth/reset", {
 	method: "POST",
 	headers: {
@@ -380,7 +380,7 @@ GET /api/officeHour/search?facultyName=John&courseName=CS
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 // Example1: 
 // facultyName is John
 // courseName is CS
@@ -443,7 +443,7 @@ POST /api/officeHour/add/:officeHourID
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/officeHour/add/4eb54185-6ef2-47fc-a34a-6b85136c64a0", {
 	method: "POST",
 	Authorization: 'Bearer ' + token 
@@ -491,7 +491,7 @@ DELETE /api/officeHour/remove/:officeHourID
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/officeHour/remove/4eb54185-6ef2-47fc-a34a-6b85136c64a0", {
 	method: "DELETE",
 	Authorization: 'Bearer ' + token 
@@ -547,7 +547,7 @@ POST /api/officeHour/upload
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/officeHour/upload", {
 	method: "POST",
 	headers: {
@@ -628,7 +628,7 @@ PUT /api/officeHour/edit
 
 **Example Request in Javascript using fetch**
 
-```tsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/officeHour/edit", {
 	method: "PUT",
 	headers: {
@@ -703,7 +703,7 @@ DELETE /api/officeHour/edit
 
 **Example Request in Javascript using fetch**
 
-```jsx
+```javascript
 const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 	method: "DELETE",
 	headers: {
@@ -734,9 +734,9 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 {
 	"officeHourDocuments": [
 		{
-            "id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0"
+            "id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
             "facultyName": "John Doe",
-            "facultyEmail": "johndoe@umass.edu"
+            "facultyEmail": "johndoe@umass.edu",
             "startDate": "2022-01-01",
             "endDate": "2022-05-05",
             "day": 1,
