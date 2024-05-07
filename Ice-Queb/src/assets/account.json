@@ -1,0 +1,12 @@
+[
+  {
+    "email": "georgezhang@umass.edu",
+    "password": "abc123",
+    "isTeacher": true
+  },
+  {
+    "email": "yongyetan@umass.edu",
+    "password": "yy123",
+    "isTeacher": false
+  }
+]
