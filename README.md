@@ -58,6 +58,8 @@ This is the front-end interface of the project designed specifically for teacher
 
 This is the back-end server of the project that handles request from both the student-end interface and teacher-end interface.
 
+[API Documentation](#api-documentation)
+
 # Installation Instructions
 
 ## iceQuef repository (Student mobile app front end)
@@ -104,13 +106,13 @@ We use `—force`flag because there are dependency conflicts in the testing bran
 
 For Mac User, run the app by using the following command:
 
-```
+```bash
 ./run.sh https://api.icequeb.site
 ```
 
 For Windows User, run the app by using the following command:
 
-```java
+```powershell
 ./run.ps1 https://api.icequeb.site
 ```
 
@@ -123,3 +125,629 @@ Expo will generate a QR code. It is highly recommended to use the QR code approa
 # Datasets
 
 To our knowledge, no datasets were required nor utilized in our project.
+
+# API Documentation
+
+# Authentication (REST)
+
+## POST /api/auth/login ✅ ✔️
+
+### Login a user and verify the user’s identify
+
+**Request**
+
+```tsx
+POST /api/auth/login
+```
+
+**Request Body**
+
+- `email` (required, string, `"example@gmail.com"`) - The unique identifier of the user
+    - Must be a valid email that follows the correct postfix for example `@gmail.com`
+- `password` (required, string, `12345678`) - The unique password of the user
+    - Must be at least 8 characters
+- `isTeacher` (required, boolean, `true/false`) - Identify is the user is signing in as student or teacher
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/auth/login", {
+	method: "POST",
+	headers: {
+    "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+		"email": "yongye@umass.edu",
+		"password": "123456789",
+		"isTeacher": false
+	})
+});
+```
+
+**Response**
+
+- HTTP status:
+    - `200` if login is successful (ok)
+    - `400` if email or password does not exist or email is not valid (bad request)
+    - `400` if user is not found in the database (bad request)
+    - `401` if user’s password is not incorrect (unauthorized)
+    - `429` if user sends 20 request within 5 minutes (too many request)
+
+**Successful Response Body**
+
+```json
+{
+    "email": "yongye@umass.edu",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+    "status": "success",
+    "isTeacher": false
+}
+```
+
+- `email` (string) - The unique identifier of the user
+- `token` (string) - a json web token used to maintain user’s state between multiple requests
+- `status` (string) - indicated the request is successful if `success` is shown
+- `isTeacher` (boolean) - indicated whether the user is teacher or not
+
+## POST /api/auth/signup ✅ ✔️
+
+### Signs up a user and stores it in the database
+
+**Request**
+
+```tsx
+POST /api/auth/signup
+```
+
+**Request Body**
+
+- `email` (required, string, `"example@gmail.com"`) - The unique identifier of the user
+    - Must be a valid email that follows the correct postfix for example `@gmail.com`
+- `password` (required, string, `12345678`) - The unique password of the user
+    - Must be at least 8 characters
+- `isTeacher` (required, boolean, `true/false`) - Identify is the user is signing in as student or teacher
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/auth/signup", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+		"email": "yongye@umass.edu",
+		"password": "123456789",
+		"isTeacher": false
+	})
+});
+```
+
+**Response**
+
+- HTTP status:
+    - `201` if sign up is successful (created)
+    - `400` if email or password does not exist or email is not valid (bad request)
+    - `403` if user account exists in the database (forbidden)
+    - `429` if user sends 20 request within 5 minutes (too many request)
+
+**Successful Response Body**
+
+```json
+{
+	"email": "yongye@umass.edu",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+    "status": "success",
+    "isTeacher": false
+}
+```
+
+**Response Body**
+
+- `email` (string) - The unique identifier of the user
+- `token` (string) - a json web token string used to maintain user’s state between multiple requests
+- `status` (string) - indicated the request is successful if `success` is shown
+- `isTeacher` (boolean) - indicated whether the user is teacher or not
+
+## POST /api/auth/reset
+
+### Reset a user’s password and update it in the database
+
+**Request**
+
+```tsx
+POST /api/auth/reset
+```
+
+**Request Body**
+
+- `email` (required, string, `"example@gmail.com"`) - The unique identifier of the user
+    - Must be a valid email that follows the correct postfix for example `@gmail.com`
+- `oldPassword` (required, string, `oldPassword123`) - The unique original password of the user
+    - Must be at least 8 characters
+- `newPassword` (required, string, `newPassword123`) - The unique new password of the user
+    - Must be at least 8 characters
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/auth/reset", {
+	method: "POST",
+	headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        "email": "yongye@umass.edu",
+        "oldPassword": "123456789",
+        "newPassword": "987654321"
+    })
+});
+```
+
+# Office Hour (REST)
+
+## GET /api/officeHour/list ✅ ✔️
+
+### Get student’s office hour list that student previously added
+
+**Request**
+
+```tsx
+GET /api/officeHour/list?email=<studentEmail>&isTeacher=true
+```
+
+**Request Query String**
+
+- email (required, string, `yongye@umass.edu`) - the student email
+- isTeacher (optional, boolean, `true`) - only required when is sent from a teacher account
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/officeHour/list?email=yongye@umass.edu");
+const data = await response.json();
+```
+
+**Response**
+
+- HTTP status:
+    - `200` if getting OH is successful (ok)
+    - `400` if email is not valid
+    - `404` if student office hour document is not found with that email
+    - `404` if student’s office hour array ids is not found
+
+**Successful Response Body**
+
+```json
+{
+	"email":"yongye@umass.edu",
+	"officeHours": [
+		{
+            "id":"4eb54185-6ef2-47fc-a34a-6b85136c64a0",
+            "facultyName":"John Doe",
+            "courseDepartment":"Computer Science",
+            "courseNumber":"220",
+            "startDate":"2024-03-19",
+            "endDate":"2024-03-19",
+            "day":0,
+            "startTime":"10:10",
+            "endTime":"10:30"
+        },
+        {
+            "id":"5d29e833-d90f-42ee-80fb-0ef79f494729",
+            "facultyName":"Jake",
+            "courseDepartment":"Computer Science",
+            "courseNumber":"187",
+            "startDate":"2024-03-19",
+            "endDate":"2024-03-19",
+            "day":0,
+            "startTime":"10:20",
+            "endTime":"10:30"
+        }
+	],
+	"status":"success"
+}
+```
+
+**Response Body**
+
+- `email` (string) - the email of the student from the request query string
+- `officeHours` (an array object) - contains information about office hours such as facultyName, courseDepartment, and so on
+- `status` (string) - indicated the request is successful if `success` is shown
+
+## GET /api/officeHour/search ✅ ✔️
+
+### search office hour based on searching criteria
+
+**Request**
+
+```tsx
+GET /api/officeHour/search?facultyName=John&courseName=CS
+```
+
+**Request Query String**
+
+- `facultyName` (required, string, `John`) - the name of faculty
+    - could be first name, last name, or full name
+- `courseName` (required, string, `CS`)
+    - courseName consists of two part, course department + course number
+    - But you can either put department or number, or both
+- `searchLimit` (optional, number, `10`)
+    - The number of randomized office hour you want from the database
+    - default is 10
+    - ***searchLimit only works when facultyName is “” and courseName is “” (please check Example 2)***
+    - Example 1 would not be affected by searchLimit
+
+**Example Request in Javascript using fetch**
+
+```jsx
+// Example1: 
+// facultyName is John
+// courseName is CS
+const response = await fetch("https://api.icequeb.site/api/officeHour/search?facultyName=John&courseName=CS");
+const data = await response.json();
+
+// Example2: 
+// fetch all office hour with searchLimit 8
+const response = await fetch("https://api.icequeb.site/api/officeHour/search?facultyName=""&courseName=""&searchLimit=8");
+const data = await response.json();
+```
+
+**Response**
+
+- HTTP status:
+    - `200` - indicated search is completed (ok)
+
+**Successful Response Body**
+
+```json
+{
+    "searchResult": [
+        {
+            "id": "3",
+            "facultyName": "John Doe",
+            "day": 1,
+            "startDate": "2024-02-03",
+            "endDate": "2024-05-08",
+            "startTime": "02:30",
+            "endTime": "03:30",
+            "courseDepartment": "CS",
+            "courseNumber": "100"
+        }
+    ],
+    "status": "success"
+}
+```
+
+- `searchResult` (an array of objects) - an array of office hour information
+- `status` (string) - indicated the request is successful if `success` is shown
+
+## POST /api/officeHour/add/:officeHourID ✅ ✔️
+
+### Add a office hour to his/her calendar on a student’s behalf
+
+**Request**
+
+```tsx
+POST /api/officeHour/add/:officeHourID
+```
+
+**Request Parameter**
+
+- officeHourID (required, string, `4eb54185-6ef2-47fc-a34a-6b85136c64a0`) - the unique id that identifies the OH
+
+<aside>
+💡 JSON web token must be included in this HTTP request to identify user’s identity. The token must be retrieved from the /api/auth/login or /api/auth/signup endpoint.
+
+</aside>
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/officeHour/add/4eb54185-6ef2-47fc-a34a-6b85136c64a0", {
+	method: "POST",
+	Authorization: 'Bearer ' + token 
+});
+```
+
+**Response**
+
+- HTTP status:
+    - `201` if adding OH is successful (created)
+    - `400` if the id is not 36 characters long (bad request)
+    - `400` if office hour id does not exist in the office hour database
+    - `400` if office hour id is duplicated
+
+**Successful Response Body**
+
+```jsx
+{
+   "message": `The officeHourID ${officeHourId} has been added to ${email}'s student office hour document successfully.`,
+   "status": 'success',
+}
+```
+
+- `message` (string) - a message about the action of adding an office hour
+- `status` (string) - indicated the request is successful if `success` is shown
+
+## DELETE /api/officeHour/remove/:officeHourID ✅ ✔️
+
+### Delete a office hour from his/her calendar on a student’s behalf
+
+**Request**
+
+```tsx
+DELETE /api/officeHour/remove/:officeHourID
+```
+
+**Request Body**
+
+- officeHourID (required, string, `4eb54185-6ef2-47fc-a34a-6b85136c64a0`) - the unique id that identifies the OH
+
+<aside>
+💡 JSON web token must be included in this HTTP request to identify user’s identity. The token must be retrieved from the /api/auth/login or /api/auth/signup endpoint.
+
+</aside>
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/officeHour/remove/4eb54185-6ef2-47fc-a34a-6b85136c64a0", {
+	method: "DELETE",
+	Authorization: 'Bearer ' + token 
+});
+```
+
+**Response**
+
+- HTTP status:
+    - `200` if deletion is successfully (ok)
+    - `400` if the id is not 36 characters long (bad request)
+    - `400` if office hour id does not exist in the office hour database
+
+**Successful Response Body**
+
+```json
+{
+  "status": "success"
+}
+```
+
+**Response Body**
+
+- `status` (string) - indicated the request is successful if `success` is shown
+
+## POST /api/officeHour/upload ✅✔️
+
+### Upload a office hour on a professor or TA’s behalf
+
+**Request**
+
+```tsx
+POST /api/officeHour/upload
+```
+
+**Request Body**
+
+- `facultyEmail` ****(required, string, `"johndoe@umass.edu"`) - The email of faculty
+- `facultyName` ****(required, string, `"John Doe"`) - The full name of faculty
+- `startDate` ****(required, string, `"2022-01-01"`) - The start date of office hour in the format of
+    - The format must be `yyyy-mm-dd`
+- `endDate` ****(required, string, `"2022-05-05"`) - The start date of office hour
+    - The format must be `yyyy-mm-dd`
+- `day` ****(required, integer, 1) - Sunday is 0, Monday is 1, and so on, Saturday is 6
+    - day must be between 0 - 6
+- `startTime` ****(required, string, `"11:30"`) - The start time of office hour
+    - The format must be `hour:minute`
+- `endTime` ****(required, string, `"12:30"`) - The start time of office hour (hour:minute)
+- `courseDepartment` ****(required, string, `"Computer Science"`) - The department of class
+    - Include the full name of the course department instead of the abbreviated name
+    - Here is a list of options: [Department option](https://www.notion.so/Department-option-fe17847911124d46944c23e79c78ae6d?pvs=21)
+- `courseNumber` ****(required, string, `"198C"` or `"220"`)
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/officeHour/upload", {
+	method: "POST",
+	headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    "facultyName": "John Doe",
+    "facultyEmail": "JohnDoe@umass.edu",
+    "startDate": "2022-01-01",
+    "endDate": "2022-05-05",
+    "day": 1,
+    "startTime": "11:30",
+    "endTime": "12:30",
+    "courseDepartment": "Nutrition",
+    "courseNumber": "210",
+  })
+});
+```
+
+**Response**
+
+- HTTP status:
+    - `200` if uploading OH is successful (ok)
+    - `400` if user request is not valid (bad request)
+    - `400` if there is a duplicated office hour in the database (bad request)
+    - `429` if user sends 150 request within 10 minutes (too many request)
+
+**Successful Response Body**
+
+```json
+{
+	"officeHourToUpload": {
+	"id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
+    "facultyName": "John Doe",
+    "facultyEmail": "johndoe@umass.edu",
+    "startDate": "2022-01-01",
+    "endDate": "2022-05-05",
+    "day": 1,
+    "startTime": "11:30",
+    "endTime": "12:30",
+    "courseDepartment": "Nutrition",
+    "courseNumber": "210",
+  },
+  "status": "success"
+}
+```
+
+- `officeHourToUpload` (object) - contains the request body and the uuid of the office hour
+- `status` (string) - indicated the request is successful if `success` is shown
+
+## PUT /api/officeHour/edit✅✔️
+
+### Edit a office hour on a professor or TA’s behalf
+
+**Request**
+
+```tsx
+PUT /api/officeHour/edit
+```
+
+**Request Body**
+
+- `facultyEmail` ****(required, string, `"johndoe@umass.edu"`) - The email of faculty
+- `facultyName` ****(required, string, `"John Doe"`) - The full name of faculty
+- `startDate` ****(required, string, `"2022-01-01"`) - The start date of office hour in the format of
+    - The format must be `yyyy-mm-dd`
+- `endDate` ****(required, string, `"2022-05-05"`) - The start date of office hour
+    - The format must be `yyyy-mm-dd`
+- `day` ****(required, integer, 1) - Sunday is 0, Monday is 1, and so on, Saturday is 6
+    - day must be between 0 - 6
+- `startTime` ****(required, string, `"11:30"`) - The start time of office hour
+    - The format must be `hour:minute`
+- `endTime` ****(required, string, `"12:30"`) - The start time of office hour (hour:minute)
+- `courseDepartment` ****(required, string, `"Computer Science"`) - The department of class
+    - Include the full name of the course department instead of the abbreviated name
+    - Here is a list of options: [Department option](https://www.notion.so/Department-option-fe17847911124d46944c23e79c78ae6d?pvs=21)
+- `courseNumber` ****(required, string, `"198C"` or `"220"`)
+
+**Example Request in Javascript using fetch**
+
+```tsx
+const response = await fetch("https://api.icequeb.site/api/officeHour/edit", {
+	method: "PUT",
+	headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    "facultyName": "John Doe",
+    "facultyEmail": "JohnDoe@umass.edu",
+    "startDate": "2022-01-01",
+    "endDate": "2022-05-05",
+    "day": 1,
+    "startTime": "11:30",
+    "endTime": "12:30",
+    "courseDepartment": "Nutrition",
+    "courseNumber": "210",
+  })
+});
+```
+
+**Response**
+
+- HTTP status:
+    - `200` if uploading OH is successful (ok)
+    - `400` if user request is not valid (bad request)
+    - `400` if there is a duplicated office hour in the database (bad request)
+    - `429` if user sends 150 request within 10 minutes (too many request)
+
+**Successful Response Body**
+
+```json
+{
+	"officeHourToUpload": {
+	"id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
+    "facultyName": "John Doe",
+    "facultyEmail": "johndoe@umass.edu",
+    "startDate": "2022-01-01",
+    "endDate": "2022-05-05",
+    "day": 1,
+    "startTime": "11:30",
+    "endTime": "12:30",
+    "courseDepartment": "Nutrition",
+    "courseNumber": "210",
+  },
+  "status": "success"
+}
+```
+
+- `officeHourToUpload` (object) - contains the request body and the uuid of the office hour
+- `status` (string) - indicated the request is successful if `success` is shown
+
+## DELETE /api/officeHour/edit✅✔️
+
+### Delete a office hour on a professor or TA’s behalf
+
+**Request**
+
+```tsx
+DELETE /api/officeHour/edit
+```
+
+**Request Body**
+
+- `facultyEmail` ****(required, string, `"johndoe@umass.edu"`) - The email of faculty
+- `startDate` ****(required, string, `"2022-01-01"`) - The start date of office hour in the format of
+    - The format must be `yyyy-mm-dd`
+- `endDate` ****(required, string, `"2022-05-05"`) - The start date of office hour
+    - The format must be `yyyy-mm-dd`
+- `courseDepartment` ****(required, string, `"Computer Science"`) - The department of class
+    - Include the full name of the course department instead of the abbreviated name
+    - Here is a list of options: [Department option](https://www.notion.so/Department-option-fe17847911124d46944c23e79c78ae6d?pvs=21)
+- `courseNumber` ****(required, string, `"198C"` or `"220"`)
+
+**Example Request in Javascript using fetch**
+
+```jsx
+const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
+	method: "DELETE",
+	headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    "facultyEmail": "JohnDoe@umass.edu",
+    "startDate": "2022-01-01",
+    "endDate": "2022-05-05",
+    "courseDepartment": "Nutrition",
+    "courseNumber": "210",
+  })
+});
+```
+
+- `officeHourDocuments` (an array of objects) - an array of office hour that were deleted
+- `status` (string) - indicated the request is successful if `success` is shown
+- HTTP status:
+    - `200` if uploading OH is successful (ok)
+    - `400` if user request is not valid (bad request)
+    - `400` if there is a duplicated office hour in the database (bad request)
+    - `429` if user sends 150 request within 10 minutes (too many request)
+    
+
+**Successful Response Body**
+
+```json
+{
+	"officeHourDocuments": [
+		{
+            "id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0"
+            "facultyName": "John Doe",
+            "facultyEmail": "johndoe@umass.edu"
+            "startDate": "2022-01-01",
+            "endDate": "2022-05-05",
+            "day": 1,
+            "startTime": "11:30",
+            "endTime": "12:30",
+            "courseDepartment": "Nutrition",
+            "courseNumber": "210",
+	  }
+	],
+  "status": "success"
+}
+```
+
+# Queue (WebSocket)
