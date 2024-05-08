@@ -758,3 +758,6 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 2. Click on the latests workflow run 
 3. Navigate to `Jobs` section on the left side bar, and click on `jest`
 4. There will be a list of procedure ran for testing displayed on the right, click `Run Jest` to see the result of 69 tests passing
+
+![Test Result Page](Ice-Queb/src/assets/test_cases_result.png)
+
