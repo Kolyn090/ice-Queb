@@ -1,6 +1,6 @@
 # ice Queb (Office Hour Queuing App)
 
-Developers: Haijie Qin, George Zhang, Yongye Tan, Jianxin Lin
+Developers: [Haijie Qin](https://github.com/ygbull), [George Zhang](https://github.com/GeorgeZhang744), [Yongye Tan](https://github.com/algebra2boy), [Jianxin Lin](https://github.com/Kolyn090)
 
 ## General Introduction
 
@@ -25,7 +25,7 @@ ice Queb has two apps: student mobile app and faculty web app. Users will be int
 
 This project has 3 GitHub repositories.
 
-## Ice-Quef
+## [Ice-Quef](Ice-Quef)
 
 ### Introduction
 
@@ -39,7 +39,7 @@ This is the front-end interface of the project designed specifically for student
 - Join a queue of an office hour section that the students are interested in attending
 - Leave a queue from an office hour section after the problem is solved
 
-## Ice-Faculty
+## [Ice-Faculty](Ice-Faculty)
 
 ### Introduction
 
@@ -52,7 +52,7 @@ This is the front-end interface of the project designed specifically for teacher
 - Modify the details of existing office hours associated with a faculty member if are updates or if any information was entered incorrectly
 - Delete an office hour section if it is no longer needed (e.g., end of the semester)
 
-## Ice-Queb
+## [Ice-Queb](Ice-Queb)
 
 ### Introduction
 
@@ -94,7 +94,7 @@ We are using React Native Expo framework to develop & deploy our app! You should
 
 ### Step 1
 
-Open folder “Ice-Quef” in an IDE or terminal. 
+Open folder [Ice-Quef](Ice-Quef) in an IDE or terminal.
 
 Run the following command:
 
@@ -106,13 +106,13 @@ We use `—force`flag because there are dependency conflicts in the testing bran
 
 ### Step 2
 
-For Mac User, run the app by using the following command:
+For Unix Base Users (Linux and Mac), run the app by using the following command:
 
 ```bash
 ./run.sh https://api.icequeb.site
 ```
 
-For Windows User, run the app by using the following command:
+For Windows Users, run the app by using the following command:
 
 ```powershell
 ./run.ps1 https://api.icequeb.site
