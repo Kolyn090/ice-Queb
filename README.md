@@ -121,6 +121,61 @@ For Windows Users, run the app by using the following command:
 Expo will generate a QR code. It is highly recommended to use the QR code approach because it is easier and has no overhead. Next, if you are using an iOS device, use your camera to scan the QR code. You will be redirected to "Expo go" and your project will be opened on your phone. If you are using an Android device, open “Expo go” and choose the scan option to scan the QR code.
 
 ## Docker
+### Build and push the images
+
+### Use script
+
+The backend server is deployed based on the Docker image created locally. By simply run
+
+```bash
+cd /Ice-Queb
+./deploy.sh <Your Docker Username> # you may need to enter your docker account password
+```
+
+The docker image will push to `<Your Docker Username>ice-queb:latest` online
+
+### Manually
+
+```bash
+cd /Ice-Queb
+docker build -t ice-queb:latest .
+docker run -d -p 443:<Port in the .ENV file> ice-queb:latest
+docker tag ice-queb:latest <Your Docker Username>/ice-queb:latest
+docker login
+docker push <Your Docker Username>/ice-queb:latest
+```
+
+The docker image will push to `<Your Docker Username>ice-queb:latest` online
+
+### Run Docker Image on Remote Server
+
+1. First login to the server using OpenSSH client
+2. In the server, run
+
+```bash
+sudo docker pull <Your Docker Username>/ice-queb:latest
+```
+
+Check if image is pulled successfully by run
+
+```bash
+sudo docker images
+```
+
+1. If you can see the image, you can start run the Docker image by
+
+```bash
+sudo docker run -d -p 443:<Port in the .ENV file> ice-queb:latest
+```
+
+1. Give it a few seconds and check if there’s any error in the Docker container
+
+```bash
+sudo docker ps # find the Ice-Queb  container ID
+sudo docker logs <Container ID>
+```
+
+If it shows the port number and no error in the log, the backend server is up on default https port `443`
 
 # Datasets
 
