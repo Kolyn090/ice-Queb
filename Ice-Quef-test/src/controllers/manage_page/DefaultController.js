@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { NODE_ENV } from '@env';
 import { ManagePageDefault } from '../../views/manage_page/Default';
 import { LoadingPage } from '../../component/LoadingPage';
 import { useOfficeHourUpdate } from '../../props/OfficeHourContext';
@@ -34,8 +35,11 @@ export function ManagePageDefaultController() {
         setIsLoading(false); // fetch is complete or if there is an error
       }
     };
+    console.log(NODE_ENV)
+    if (NODE_ENV !== 'test') {
+      fetchUserOfficeHour();
+    }
 
-    fetchUserOfficeHour();
   }, [updateTrigger]);
 
   if (isLoading) {
