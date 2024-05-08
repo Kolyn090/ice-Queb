@@ -1,12 +1,14 @@
-name: Jest Runner
+name: Backend test
 on:
-  pull_request:
-    branches: ["main"]
+  push:
 
 jobs:
   jest:
     runs-on: ubuntu-latest
 
+    defaults:
+        run: # specify working directory
+          working-directory: Ice-Queb
     steps:
       - uses: actions/checkout@v3
 
