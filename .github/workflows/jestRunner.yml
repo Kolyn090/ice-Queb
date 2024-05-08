@@ -1,6 +1,8 @@
 name: Backend test
 on:
   push:
+    paths:
+      - 'Ice-Queb/**'
 
 jobs:
   jest:
