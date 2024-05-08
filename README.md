@@ -529,21 +529,21 @@ POST /api/officeHour/upload
 
 **Request Body**
 
-- `facultyEmail` ****(required, string, `"johndoe@umass.edu"`) - The email of faculty
-- `facultyName` ****(required, string, `"John Doe"`) - The full name of faculty
-- `startDate` ****(required, string, `"2022-01-01"`) - The start date of office hour in the format of
+- `facultyEmail` (required, string, `"johndoe@umass.edu"`) - The email of faculty
+- `facultyName` (required, string, `"John Doe"`) - The full name of faculty
+- `startDate` (required, string, `"2022-01-01"`) - The start date of office hour in the format of
     - The format must be `yyyy-mm-dd`
-- `endDate` ****(required, string, `"2022-05-05"`) - The start date of office hour
+- `endDate` (required, string, `"2022-05-05"`) - The start date of office hour
     - The format must be `yyyy-mm-dd`
-- `day` ****(required, integer, 1) - Sunday is 0, Monday is 1, and so on, Saturday is 6
+- `day` (required, integer, 1) - Sunday is 0, Monday is 1, and so on, Saturday is 6
     - day must be between 0 - 6
-- `startTime` ****(required, string, `"11:30"`) - The start time of office hour
+- `startTime` (required, string, `"11:30"`) - The start time of office hour
     - The format must be `hour:minute`
-- `endTime` ****(required, string, `"12:30"`) - The start time of office hour (hour:minute)
-- `courseDepartment` ****(required, string, `"Computer Science"`) - The department of class
+- `endTime` (required, string, `"12:30"`) - The start time of office hour (hour:minute)
+- `courseDepartment` (required, string, `"Computer Science"`) - The department of class
     - Include the full name of the course department instead of the abbreviated name
     - Here is a list of options: [Department option](https://www.notion.so/Department-option-fe17847911124d46944c23e79c78ae6d?pvs=21)
-- `courseNumber` ****(required, string, `"198C"` or `"220"`)
+- `courseNumber` (required, string, `"198C"` or `"220"`)
 
 **Example Request in Javascript using fetch**
 
@@ -610,21 +610,21 @@ PUT /api/officeHour/edit
 
 **Request Body**
 
-- `facultyEmail` ****(required, string, `"johndoe@umass.edu"`) - The email of faculty
-- `facultyName` ****(required, string, `"John Doe"`) - The full name of faculty
-- `startDate` ****(required, string, `"2022-01-01"`) - The start date of office hour in the format of
+- `facultyEmail` (required, string, `"johndoe@umass.edu"`) - The email of faculty
+- `facultyName` (required, string, `"John Doe"`) - The full name of faculty
+- `startDate` (required, string, `"2022-01-01"`) - The start date of office hour in the format of
     - The format must be `yyyy-mm-dd`
-- `endDate` ****(required, string, `"2022-05-05"`) - The start date of office hour
+- `endDate` (required, string, `"2022-05-05"`) - The start date of office hour
     - The format must be `yyyy-mm-dd`
-- `day` ****(required, integer, 1) - Sunday is 0, Monday is 1, and so on, Saturday is 6
+- `day` (required, integer, 1) - Sunday is 0, Monday is 1, and so on, Saturday is 6
     - day must be between 0 - 6
-- `startTime` ****(required, string, `"11:30"`) - The start time of office hour
+- `startTime` (required, string, `"11:30"`) - The start time of office hour
     - The format must be `hour:minute`
-- `endTime` ****(required, string, `"12:30"`) - The start time of office hour (hour:minute)
-- `courseDepartment` ****(required, string, `"Computer Science"`) - The department of class
+- `endTime` (required, string, `"12:30"`) - The start time of office hour (hour:minute)
+- `courseDepartment` (required, string, `"Computer Science"`) - The department of class
     - Include the full name of the course department instead of the abbreviated name
     - Here is a list of options: [Department option](https://www.notion.so/Department-option-fe17847911124d46944c23e79c78ae6d?pvs=21)
-- `courseNumber` ****(required, string, `"198C"` or `"220"`)
+- `courseNumber` (required, string, `"198C"` or `"220"`)
 
 **Example Request in Javascript using fetch**
 
@@ -691,15 +691,15 @@ DELETE /api/officeHour/edit
 
 **Request Body**
 
-- `facultyEmail` ****(required, string, `"johndoe@umass.edu"`) - The email of faculty
-- `startDate` ****(required, string, `"2022-01-01"`) - The start date of office hour in the format of
+- `facultyEmail` (required, string, `"johndoe@umass.edu"`) - The email of faculty
+- `startDate` (required, string, `"2022-01-01"`) - The start date of office hour in the format of
     - The format must be `yyyy-mm-dd`
-- `endDate` ****(required, string, `"2022-05-05"`) - The start date of office hour
+- `endDate` (required, string, `"2022-05-05"`) - The start date of office hour
     - The format must be `yyyy-mm-dd`
-- `courseDepartment` ****(required, string, `"Computer Science"`) - The department of class
+- `courseDepartment` (required, string, `"Computer Science"`) - The department of class
     - Include the full name of the course department instead of the abbreviated name
     - Here is a list of options: [Department option](https://www.notion.so/Department-option-fe17847911124d46944c23e79c78ae6d?pvs=21)
-- `courseNumber` ****(required, string, `"198C"` or `"220"`)
+- `courseNumber` (required, string, `"198C"` or `"220"`)
 
 **Example Request in Javascript using fetch**
 
