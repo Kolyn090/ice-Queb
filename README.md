@@ -154,9 +154,9 @@ POST /api/auth/login
 const response = await fetch("https://api.icequeb.site/api/auth/login", {
 	method: "POST",
 	headers: {
-    "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+    		"Content-Type": "application/json",
+    	},
+    	body: JSON.stringify({
 		"email": "yongye@umass.edu",
 		"password": "123456789",
 		"isTeacher": false
@@ -211,11 +211,11 @@ POST /api/auth/signup
 
 ```javascript
 const response = await fetch("https://api.icequeb.site/api/auth/signup", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+    	method: "POST",
+    	headers: {
+        	"Content-Type": "application/json",
+    	},
+    	body: JSON.stringify({
 		"email": "yongye@umass.edu",
 		"password": "123456789",
 		"isTeacher": false
@@ -236,9 +236,9 @@ const response = await fetch("https://api.icequeb.site/api/auth/signup", {
 ```json
 {
 	"email": "yongye@umass.edu",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-    "status": "success",
-    "isTeacher": false
+    	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+	"status": "success",
+	"isTeacher": false
 }
 ```
 
@@ -274,13 +274,13 @@ POST /api/auth/reset
 const response = await fetch("https://api.icequeb.site/api/auth/reset", {
 	method: "POST",
 	headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        "email": "yongye@umass.edu",
-        "oldPassword": "123456789",
-        "newPassword": "987654321"
-    })
+        	"Content-Type": "application/json",
+    	},
+    	body: JSON.stringify({
+        	"email": "yongye@umass.edu",
+        	"oldPassword": "123456789",
+        	"newPassword": "987654321"
+	})
 });
 ```
 
@@ -322,7 +322,7 @@ const data = await response.json();
 {
 	"email":"yongye@umass.edu",
 	"officeHours": [
-		{
+	{
             "id":"4eb54185-6ef2-47fc-a34a-6b85136c64a0",
             "facultyName":"John Doe",
             "courseDepartment":"Computer Science",
@@ -332,7 +332,7 @@ const data = await response.json();
             "day":0,
             "startTime":"10:10",
             "endTime":"10:30"
-        },
+	},
         {
             "id":"5d29e833-d90f-42ee-80fb-0ef79f494729",
             "facultyName":"Jake",
@@ -551,19 +551,19 @@ POST /api/officeHour/upload
 const response = await fetch("https://api.icequeb.site/api/officeHour/upload", {
 	method: "POST",
 	headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    "facultyName": "John Doe",
-    "facultyEmail": "JohnDoe@umass.edu",
-    "startDate": "2022-01-01",
-    "endDate": "2022-05-05",
-    "day": 1,
-    "startTime": "11:30",
-    "endTime": "12:30",
-    "courseDepartment": "Nutrition",
-    "courseNumber": "210",
-  })
+		"Content-Type": "application/json",
+  	},
+  	body: JSON.stringify({
+		"facultyName": "John Doe",
+		"facultyEmail": "JohnDoe@umass.edu",
+		"startDate": "2022-01-01",
+		"endDate": "2022-05-05",
+		"day": 1,
+		"startTime": "11:30",
+		"endTime": "12:30",
+		"courseDepartment": "Nutrition",
+		"courseNumber": "210",
+	})
 });
 ```
 
@@ -580,17 +580,17 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/upload", {
 ```json
 {
 	"officeHourToUpload": {
-	"id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
-    "facultyName": "John Doe",
-    "facultyEmail": "johndoe@umass.edu",
-    "startDate": "2022-01-01",
-    "endDate": "2022-05-05",
-    "day": 1,
-    "startTime": "11:30",
-    "endTime": "12:30",
-    "courseDepartment": "Nutrition",
-    "courseNumber": "210",
-  },
+		"id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
+		"facultyName": "John Doe",
+		"facultyEmail": "johndoe@umass.edu",
+		"startDate": "2022-01-01",
+		"endDate": "2022-05-05",
+		"day": 1,
+		"startTime": "11:30",
+		"endTime": "12:30",
+		"courseDepartment": "Nutrition",
+		"courseNumber": "210",
+  	},
   "status": "success"
 }
 ```
@@ -632,19 +632,19 @@ PUT /api/officeHour/edit
 const response = await fetch("https://api.icequeb.site/api/officeHour/edit", {
 	method: "PUT",
 	headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    "facultyName": "John Doe",
-    "facultyEmail": "JohnDoe@umass.edu",
-    "startDate": "2022-01-01",
-    "endDate": "2022-05-05",
-    "day": 1,
-    "startTime": "11:30",
-    "endTime": "12:30",
-    "courseDepartment": "Nutrition",
-    "courseNumber": "210",
-  })
+		"Content-Type": "application/json",
+	},
+  	body: JSON.stringify({
+		"facultyName": "John Doe",
+		"facultyEmail": "JohnDoe@umass.edu",
+		"startDate": "2022-01-01",
+		"endDate": "2022-05-05",
+		"day": 1,
+		"startTime": "11:30",
+		"endTime": "12:30",
+		"courseDepartment": "Nutrition",
+		"courseNumber": "210",
+	})
 });
 ```
 
@@ -661,18 +661,18 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/edit", {
 ```json
 {
 	"officeHourToUpload": {
-	"id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
-    "facultyName": "John Doe",
-    "facultyEmail": "johndoe@umass.edu",
-    "startDate": "2022-01-01",
-    "endDate": "2022-05-05",
-    "day": 1,
-    "startTime": "11:30",
-    "endTime": "12:30",
-    "courseDepartment": "Nutrition",
-    "courseNumber": "210",
-  },
-  "status": "success"
+		"id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
+		"facultyName": "John Doe",
+		"facultyEmail": "johndoe@umass.edu",
+		"startDate": "2022-01-01",
+		"endDate": "2022-05-05",
+		"day": 1,
+		"startTime": "11:30",
+		"endTime": "12:30",
+		"courseDepartment": "Nutrition",
+		"courseNumber": "210",
+	},
+	"status": "success"
 }
 ```
 
@@ -707,15 +707,15 @@ DELETE /api/officeHour/edit
 const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 	method: "DELETE",
 	headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    "facultyEmail": "JohnDoe@umass.edu",
-    "startDate": "2022-01-01",
-    "endDate": "2022-05-05",
-    "courseDepartment": "Nutrition",
-    "courseNumber": "210",
-  })
+		"Content-Type": "application/json",
+  	},
+  	body: JSON.stringify({
+		"facultyEmail": "JohnDoe@umass.edu",
+		"startDate": "2022-01-01",
+		"endDate": "2022-05-05",
+		"courseDepartment": "Nutrition",
+		"courseNumber": "210",
+	})
 });
 ```
 
@@ -734,19 +734,19 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 {
 	"officeHourDocuments": [
 		{
-            "id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
-            "facultyName": "John Doe",
-            "facultyEmail": "johndoe@umass.edu",
-            "startDate": "2022-01-01",
-            "endDate": "2022-05-05",
-            "day": 1,
-            "startTime": "11:30",
-            "endTime": "12:30",
-            "courseDepartment": "Nutrition",
-            "courseNumber": "210",
-	  }
+	            "id": "4eb54185-6ef2-47fc-a34a-6b85136c64a0",
+	            "facultyName": "John Doe",
+	            "facultyEmail": "johndoe@umass.edu",
+	            "startDate": "2022-01-01",
+	            "endDate": "2022-05-05",
+	            "day": 1,
+	            "startTime": "11:30",
+	            "endTime": "12:30",
+	            "courseDepartment": "Nutrition",
+	            "courseNumber": "210",
+		}
 	],
-  "status": "success"
+  	"status": "success"
 }
 ```
 
