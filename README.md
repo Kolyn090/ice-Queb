@@ -60,6 +60,8 @@ This is the back-end server of the project that handles request from both the st
 
 [API Documentation](#api-documentation)
 
+[Check Test Cases Result](#how-to-check-test-results-on-github-actions)
+
 # Installation Instructions
 
 ## iceQuef repository (Student mobile app front end)
@@ -119,8 +121,6 @@ For Windows User, run the app by using the following command:
 Expo will generate a QR code. It is highly recommended to use the QR code approach because it is easier and has no overhead. Next, if you are using an iOS device, use your camera to scan the QR code. You will be redirected to "Expo go" and your project will be opened on your phone. If you are using an Android device, open “Expo go” and choose the scan option to scan the QR code.
 
 ## Docker
-
-## Ice-Queb
 
 # Datasets
 
@@ -751,3 +751,10 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 ```
 
 # Queue (WebSocket)
+
+# How to check test results on Github Actions
+
+1. Click on `Actions` on nav bar, in between `Pull Requests` and `Projects`
+2. Click on the latests workflow run 
+3. Navigate to `Jobs` section on the left side bar, and click on `jest`
+4. There will be a list of procedure ran for testing displayed on the right, click `Run Jest` to see the result of 69 tests passing
