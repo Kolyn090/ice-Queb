@@ -899,11 +899,11 @@ Sent in response to a `leave queue`.
 `error` (string): Error message if the leave operation fails.
 # How to check test results on Github Actions
 
-1. Click on `Actions` on nav bar, in between `Pull Requests` and `Projects`
+1. Click on `Actions` located on the nav bar of this GitHub repository page, in between `Pull Requests` and `Projects`
 2. Click on the latests workflow run 
 3. Navigate to `Jobs` section on the left side bar, and click on `jest`
-4. There will be a list of procedure ran for testing displayed on the right, click `Run Jest` to see the result of 69 tests passing
-5. If you want to see what and how the backend tests are written, please check out the Ice-Queb/src/tests
+4. For back end testing, there will be a list of procedure ran for testing displayed on the right, click `Run Jest` to see the result of 69 tests passing
+5. For front end testing, you will see some errors printed in the console. For the first warning “An update to ForwardRef inside a test was not wrapped in act(…)”, the `act` function should be excluded despite of the warning, as indicated by the react native testing library engineers in [https://github.com/callstack/react-native-testing-library/issues/1302](https://github.com/callstack/react-native-testing-library/issues/1302) Also, the error “requested resource was not found” is expected because the test indeed does not fetch office hours from the serve in the test, and the designed error should be thrown. After the two console errors, **you should be able to see all test cases passed**. In the end, the “Jest has detected the following 1 open handle potentially keeping Jest from exiting” Warning is caused by abandoning ngrok server which we were using for testing our product. The system attempts to connect to the serve but does not get any response back. The testing branch is using a slightly older version, and the connection to ngrok was not completely removed.
 
 
 ![Test Result Page](Ice-Queb/src/assets/test_cases_result.png)
