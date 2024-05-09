@@ -806,7 +806,97 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 ```
 
 # Queue (WebSocket)
+## Events
 
+### `connection`
+
+**Description**: Triggered when a client connects to the WebSocket server.
+
+### `check existence`
+
+**Description**: Checks if a student is already present in the queue, typically used for reconnecting to the queue if the connection is lost.
+
+**Data Required**:
+
+`studentEmail` (string): Email address of the student.
+
+`officeHourID` (string): Identifier for the specific office hour session.
+
+**Response**: `check existence response`
+
+### `join queue`
+
+**Description**: Allows a student to join a queue for an office hour session.
+
+**Data Required**:
+
+`studentEmail` (string): Email address of the student.
+
+`officeHourID` (string): Identifier for the specific office hour session.
+
+**Response**: `join queue response`
+
+### `leave queue`
+
+**Description**: Allows a student to leave the queue.
+
+**Data Required**:
+
+`studentEmail` (string): Email address of the student.
+
+`officeHourID` (string): Identifier for the specific office hour session.
+
+**Response**: `leave queue response`
+
+### `update queue positions`
+
+**Description**: Notifies all clients about updated positions in the queue, triggered after any operation that alters the queue order.
+
+**Data**:
+
+`position` (integer): The new position of the student in the queue.
+
+## Response
+
+### `check existence response`
+
+Sent in response to a `check existence`.
+
+**Data**:
+
+`status` (string): Indicates the result of the check (`success` or `failure`).
+
+`data` (object): Contains the queue status of the student.
+
+`isInQueue` (boolean): Whether the student is currently in the queue.
+
+`position` (integer): Current position of the student in the queue.
+
+`error` (string): Error message if applicable.
+
+### `join queue response`
+
+Sent in response to a `join queue`.
+
+**Data**:
+
+`status` (string): Result of the join operation (`success` or `failure`).
+
+`data` (integer): The new position of the student in the queue, if successful.
+
+`error` (string): Error message if the join operation fails.
+
+### `leave queue response`
+
+Sent in response to a `leave queue`.
+
+**Data**:
+
+`status` (string): Result of the leave operation (`success` or `failure`).
+
+`data` (integer): The remaining number of students in the queue after leaving.
+
+`error` (string): Error message if the leave operation fails.
 # How to check test results on Github Actions
 
 1. Click on `Actions` on nav bar, in between `Pull Requests` and `Projects`
