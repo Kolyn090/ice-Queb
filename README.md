@@ -1,6 +1,6 @@
 # ice Queb (Office Hour Queuing App)
 
-Developers: Haijie Qin, George Zhang, Yongye Tan, Jianxin Lin
+Developers: [Haijie Qin](https://github.com/ygbull), [George Zhang](https://github.com/GeorgeZhang744), [Yongye Tan](https://github.com/algebra2boy), [Jianxin Lin](https://github.com/Kolyn090)
 
 ## General Introduction
 
@@ -25,7 +25,12 @@ ice Queb has two apps: student mobile app and faculty web app. Users will be int
 
 This project has 3 GitHub repositories.
 
-## Ice-Quef
+Original repositories:
+- [Ice-Quef](https://github.com/algebra2boy/Ice-Quef)
+- [Ice-Faculty](https://github.com/algebra2boy/Ice-Faculty)
+- [Ice-Queb](https://github.com/algebra2boy/Ice-Queb)
+
+## [Ice-Quef](Ice-Quef)
 
 ### Introduction
 
@@ -39,7 +44,7 @@ This is the front-end interface of the project designed specifically for student
 - Join a queue of an office hour section that the students are interested in attending
 - Leave a queue from an office hour section after the problem is solved
 
-## Ice-Faculty
+## [Ice-Faculty](Ice-Faculty)
 
 ### Introduction
 
@@ -52,7 +57,7 @@ This is the front-end interface of the project designed specifically for teacher
 - Modify the details of existing office hours associated with a faculty member if are updates or if any information was entered incorrectly
 - Delete an office hour section if it is no longer needed (e.g., end of the semester)
 
-## Ice-Queb
+## [Ice-Queb](Ice-Queb)
 
 ### Introduction
 
@@ -94,7 +99,7 @@ We are using React Native Expo framework to develop & deploy our app! You should
 
 ### Step 1
 
-Open folder “Ice-Quef” in an IDE or terminal. 
+Open folder [Ice-Quef](Ice-Quef) in an IDE or terminal.
 
 Run the following command:
 
@@ -106,13 +111,13 @@ We use `—force`flag because there are dependency conflicts in the testing bran
 
 ### Step 2
 
-For Mac User, run the app by using the following command:
+For Unix Base Users (Linux and Mac), run the app by using the following command:
 
 ```bash
 ./run.sh https://api.icequeb.site
 ```
 
-For Windows User, run the app by using the following command:
+For Windows Users, run the app by using the following command:
 
 ```powershell
 ./run.ps1 https://api.icequeb.site
@@ -121,6 +126,61 @@ For Windows User, run the app by using the following command:
 Expo will generate a QR code. It is highly recommended to use the QR code approach because it is easier and has no overhead. Next, if you are using an iOS device, use your camera to scan the QR code. You will be redirected to "Expo go" and your project will be opened on your phone. If you are using an Android device, open “Expo go” and choose the scan option to scan the QR code.
 
 ## Docker
+### Build and push the images
+
+### Use script
+
+The backend server is deployed based on the Docker image created locally. By simply run
+
+```bash
+cd /Ice-Queb
+./deploy.sh <Your Docker Username> # you may need to enter your docker account password
+```
+
+The docker image will push to `<Your Docker Username>ice-queb:latest` online
+
+### Manually
+
+```bash
+cd /Ice-Queb
+docker build -t ice-queb:latest .
+docker run -d -p 443:<Port in the .ENV file> ice-queb:latest
+docker tag ice-queb:latest <Your Docker Username>/ice-queb:latest
+docker login
+docker push <Your Docker Username>/ice-queb:latest
+```
+
+The docker image will push to `<Your Docker Username>ice-queb:latest` online
+
+### Run Docker Image on Remote Server
+
+1. First login to the server using OpenSSH client
+2. In the server, run
+
+```bash
+sudo docker pull <Your Docker Username>/ice-queb:latest
+```
+
+Check if image is pulled successfully by run
+
+```bash
+sudo docker images
+```
+
+1. If you can see the image, you can start run the Docker image by
+
+```bash
+sudo docker run -d -p 443:<Port in the .ENV file> ice-queb:latest
+```
+
+1. Give it a few seconds and check if there’s any error in the Docker container
+
+```bash
+sudo docker ps # find the Ice-Queb  container ID
+sudo docker logs <Container ID>
+```
+
+If it shows the port number and no error in the log, the backend server is up on default https port `443`
 
 # Datasets
 
@@ -751,7 +811,97 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 ```
 
 # Queue (WebSocket)
+## Events
 
+### `connection`
+
+**Description**: Triggered when a client connects to the WebSocket server.
+
+### `check existence`
+
+**Description**: Checks if a student is already present in the queue, typically used for reconnecting to the queue if the connection is lost.
+
+**Data Required**:
+
+`studentEmail` (string): Email address of the student.
+
+`officeHourID` (string): Identifier for the specific office hour session.
+
+**Response**: `check existence response`
+
+### `join queue`
+
+**Description**: Allows a student to join a queue for an office hour session.
+
+**Data Required**:
+
+`studentEmail` (string): Email address of the student.
+
+`officeHourID` (string): Identifier for the specific office hour session.
+
+**Response**: `join queue response`
+
+### `leave queue`
+
+**Description**: Allows a student to leave the queue.
+
+**Data Required**:
+
+`studentEmail` (string): Email address of the student.
+
+`officeHourID` (string): Identifier for the specific office hour session.
+
+**Response**: `leave queue response`
+
+### `update queue positions`
+
+**Description**: Notifies all clients about updated positions in the queue, triggered after any operation that alters the queue order.
+
+**Data**:
+
+`position` (integer): The new position of the student in the queue.
+
+## Response
+
+### `check existence response`
+
+Sent in response to a `check existence`.
+
+**Data**:
+
+`status` (string): Indicates the result of the check (`success` or `failure`).
+
+`data` (object): Contains the queue status of the student.
+
+`isInQueue` (boolean): Whether the student is currently in the queue.
+
+`position` (integer): Current position of the student in the queue.
+
+`error` (string): Error message if applicable.
+
+### `join queue response`
+
+Sent in response to a `join queue`.
+
+**Data**:
+
+`status` (string): Result of the join operation (`success` or `failure`).
+
+`data` (integer): The new position of the student in the queue, if successful.
+
+`error` (string): Error message if the join operation fails.
+
+### `leave queue response`
+
+Sent in response to a `leave queue`.
+
+**Data**:
+
+`status` (string): Result of the leave operation (`success` or `failure`).
+
+`data` (integer): The remaining number of students in the queue after leaving.
+
+`error` (string): Error message if the leave operation fails.
 # How to check test results on Github Actions
 
 1. Click on `Actions` located on the nav bar of this GitHub repository page, in between `Pull Requests` and `Projects`
@@ -762,3 +912,17 @@ const response = await fetch("https://api.icequeb.site/api/officeHour/delete", {
 
 
 ![Test Result Page](Ice-Queb/src/assets/test_cases_result.png)
+
+# Art Assets Credits
+
+Calendar icon: [iconfinder.com](http://iconfinder.com) small-n-flat pack
+
+Cog icon: [iconfinder.com](http://iconfinder.com) small-n-flat pack
+
+People icon: [iconfinder.com](http://iconfinder.com) small-n-flat pack
+
+ice Queb icon (old): Jianxin Lin
+
+ice Queb icon (umass): Jianxin Lin & UMass
+
+ice Queb icon: Jianxin Lin
