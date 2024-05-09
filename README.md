@@ -907,3 +907,17 @@ Sent in response to a `leave queue`.
 
 
 ![Test Result Page](Ice-Queb/src/assets/test_cases_result.png)
+
+# Art Assets Credits
+
+Calendar icon: [iconfinder.com](http://iconfinder.com) small-n-flat pack
+
+Cog icon: [iconfinder.com](http://iconfinder.com) small-n-flat pack
+
+People icon: [iconfinder.com](http://iconfinder.com) small-n-flat pack
+
+ice Queb icon (old): Jianxin Lin
+
+ice Queb icon (umass): Jianxin Lin & UMass
+
+ice Queb icon: Jianxin Lin
