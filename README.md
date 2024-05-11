@@ -23,7 +23,7 @@ ice Queb has two apps: student mobile app and faculty web app. Users will be int
 
 # Repositories
 
-This project has 3 GitHub repositories.
+This project contains 3 GitHub repositories.
 
 Original repositories:
 - [Ice-Quef](https://github.com/algebra2boy/Ice-Quef)
@@ -36,6 +36,8 @@ Original repositories:
 
 This is the front-end interface of the project designed specifically for students. The interface provides easy access for students to manage their office hour attendance effectively.
 
+*Things to be aware*: Our backbone framework React Native Expo has just updated its SDK to version 51 four days ago as of this moment. The version we were using was 50 that has been discarded by Expo go. We had to upgrade our SDK to match the client app’s version. We do not know what effects will it bring but please do understand that we cannot control force majeure.
+
 ### Features included
 
 - Search for office hour sections and add the office hour sections of the courses that the students enrolled
@@ -43,6 +45,8 @@ This is the front-end interface of the project designed specifically for student
 - Check the real-time updating queuing status of an office hour section
 - Join a queue of an office hour section that the students are interested in attending
 - Leave a queue from an office hour section after the problem is solved
+- Customization: Persistent theme change (only mobile)
+- Change password
 
 ## [Ice-Faculty](Ice-Faculty)
 
