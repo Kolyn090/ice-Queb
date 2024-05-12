@@ -230,7 +230,7 @@ export const ThemeProvider = ({ children }) => {
       const fileContents = await FileSystem.readAsStringAsync(fileUri);
       return fileContents;
     } catch (error) {
-      console.error('Error reading text file:', error);
+      console.log('Error reading text file:', error);
       return undefined;
     }
   };
