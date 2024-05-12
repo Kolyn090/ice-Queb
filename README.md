@@ -39,6 +39,11 @@ Original repositories:
 - [Ice-Faculty](https://github.com/algebra2boy/Ice-Faculty)
 - [Ice-Queb](https://github.com/algebra2boy/Ice-Queb)
 
+Submission repositority:
+- [Ice-Queb](https://github.com/Kolyn090/ice-Queb)
+	- This is the repo that has the submission readme
+	- [How to check test results on Github Actions](#how-to-check-test-results-on-github-actions)
+
 ## [Ice-Quef](Ice-Quef)
 
 ### Introduction
@@ -153,6 +158,13 @@ Notice that there might be a facebook watchman wanting to access your documents,
 ### Option 1: [Check Test Cases Result](#how-to-check-test-results-on-github-actions)
 
 Notice that the tests in Ice-Queb only function expectly using this approach. This is because this GitHub repository contains all required env variables. If you downloaded a zip folder, these variables will not be included and as in result over half of the test cases will fail.
+
+### Option 2: Using Web
+
+Go to this base URL: [https://api.icequeb.site](https://api.icequeb.site) 
+
+Check out the [API documentation](#api-documentation) to learn how to send a request to this API server deployed on EC2.
+
 
 # Configurations
 
