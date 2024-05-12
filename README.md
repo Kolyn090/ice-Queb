@@ -89,6 +89,12 @@ This is the back-end server of the project that handles request from both the st
 
 ## Ice-Quef folder (Student mobile app front end)
 
+Test account (use this to log in if you don't want to sign up a new account)
+```
+Email: officehour@umass.edu
+Password: Password1
+```
+
 ### Option 1: Using React Native Expo
 
 For mobile user: Check out the “React Native Expo” tutorial in the Configuration section.
@@ -122,6 +128,12 @@ npm i
 After the QR code is generated, press 'w' key on your terminal and the page will be rendered on your brower.
 
 ## Ice-Faculty folder (Faculty web app front end)
+
+Test account (use this to log in if you don't want to sign up a new account)
+```
+Email: teacher@umass.edu
+Password: Password1
+```
 
 ### Option 1: Using Web
 
