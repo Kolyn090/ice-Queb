@@ -39,6 +39,11 @@ Original repositories:
 - [Ice-Faculty](https://github.com/algebra2boy/Ice-Faculty)
 - [Ice-Queb](https://github.com/algebra2boy/Ice-Queb)
 
+Submission repositority:
+- [Ice-Quef](https://github.com/Kolyn090/ice-Queb)
+	- This is the repo that has the submission readme
+	- [How to check test results on Github Actions](#how-to-check-test-results-on-github-actions)
+
 ## [Ice-Quef](Ice-Quef)
 
 ### Introduction
