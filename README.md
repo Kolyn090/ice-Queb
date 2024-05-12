@@ -96,10 +96,20 @@ You can use this link on mobile devices as well.
 
 This is the same as option 1.
 
+For Mac user:
+
 ```bash
 npm i
 ./run.sh https://api.icequeb.site
 ```
+
+For Windows user:
+
+```bash
+npm i
+./run.ps1 https://api.icequeb.site
+```
+
 After the QR code is generated, press 'w' key on your terminal and the page will be rendered on your brower.
 
 ## Ice-Faculty folder (Faculty web app front end)
