@@ -28,7 +28,7 @@ ice Queb has two apps: student mobile app and faculty web app. Users will be int
 
 # Repositories
 
-This project contains 3 folders from two GitHub repositories.
+This project contains 4 folders from three GitHub repositories.
 
 Original repositories:
 - [Ice-Quef](https://github.com/algebra2boy/Ice-Quef)
