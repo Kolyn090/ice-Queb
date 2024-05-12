@@ -144,6 +144,12 @@ npm run test
 Due to unknown reason, we had to explicitly install react-test-renderer.
 Notice that there might be a facebook watchman wanting to access your documents, you need to approve it. Besides that, it might also want to access your Photo/Contacts/etc, please decline the rest of them. This is a known issue in facebook watchman, see this issue for more detail: https://github.com/facebook/watchman/issues/658.
 
+## Ice-Queb folder 
+
+### Option 1: [Check Test Cases Result](#how-to-check-test-results-on-github-actions)
+
+Notice that the tests in Ice-Queb only function expectly using this approach. This is because this GitHub repository contains all required env variables. If you downloaded a zip folder, these variables will not be included and as in result over half of the test cases will fail.
+
 # Configurations
 
 ## React Native Expo
