@@ -155,7 +155,7 @@ Notice that the tests in Ice-Queb only function expectly using this approach. Th
 ## React Native Expo
 
 *For Ice-Quef folder only.*
-We are using React Native Expo framework to develop & deploy our app! You should install mobile app “Expo go” directly from Apple Store or Google Play Store before doing next steps.
+We are using React Native Expo framework to develop & deploy our app! You should install mobile app “Expo go” directly from Apple Store or Google Play Store before doing next steps. Check out https://expo.dev/tools for more detail
 
 ### Step 1
 
