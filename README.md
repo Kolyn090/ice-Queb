@@ -28,7 +28,7 @@ ice Queb has two apps: student mobile app and faculty web app. Users will be int
 
 # Repositories
 
-This project contains 3 GitHub repositories.
+This project contains 3 folders from two GitHub repositories.
 
 Original repositories:
 - [Ice-Quef](https://github.com/algebra2boy/Ice-Quef)
@@ -78,7 +78,7 @@ This is the back-end server of the project that handles request from both the st
 
 # Installation Instructions
 
-## iceQuef repository (Student mobile app front end)
+## Ice-Quef folder (Student mobile app front end)
 
 ### Option 1: Using React Native Expo
 
@@ -92,18 +92,53 @@ Go to this website: [icequef.vercel.app](https://icequef.vercel.app/)
 
 You can use this link on mobile devices as well.
 
-## iceFaculty repository (Faculty web app front end)
+### Option 3: Using Command-line (Web version)
+
+This is the same as option 1.
+
+```bash
+npm i
+./run.sh https://api.icequeb.site
+```
+After the QR code is generated, press 'w' key on your terminal and the page will be rendered on your brower.
+
+## Ice-Faculty folder (Faculty web app front end)
 
 ### Option 1: Using Web
 
 Go to this website: [ice-faculty.vercel.app](http://ice-faculty.vercel.app) 
 
+### Option 2: Using Command-line
+
+```bash
+npm i
+npm run build
+npm run dev
+```
+
+Copy-paste the remote link to your browser. We recommend Google Chrome for the best outcome.
+
 You can use this link on mobile devices as well.
+
+## Ice-Quef-test folder (Tests for Ice-Quef)
+
+### Option 1: Using Command-line
+
+
+```bash
+npm i --force
+npm i react-test-renderer
+npm run test
+```
+
+Due to unknown reason, we had to explicitly install react-test-renderer.
+Notice that there might be a facebook watchman wanting to access your documents, you need to approve it. Besides that, it might also want to access your Photo/Contacts/etc, please decline the rest of them. This is a known issue in facebook watchman, see this issue for more detail: https://github.com/facebook/watchman/issues/658.
 
 # Configurations
 
 ## React Native Expo
 
+*For Ice-Quef folder only.*
 We are using React Native Expo framework to develop & deploy our app! You should install mobile app “Expo go” directly from Apple Store or Google Play Store before doing next steps.
 
 ### Step 1
@@ -194,6 +229,14 @@ If it shows the port number and no error in the log, the backend server is up on
 # Datasets
 
 To our knowledge, no datasets were required nor utilized in our project.
+
+
+
+
+
+
+
+
 
 # API Documentation
 
