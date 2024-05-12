@@ -154,6 +154,13 @@ Notice that there might be a facebook watchman wanting to access your documents,
 
 Notice that the tests in Ice-Queb only function expectly using this approach. This is because this GitHub repository contains all required env variables. If you downloaded a zip folder, these variables will not be included and as in result over half of the test cases will fail.
 
+### Option 2: Using Web
+
+Go to this base URL: [https://api.icequeb.site](https://api.icequeb.site) 
+
+Check out the [API documentation](#api-documentation) to learn how to send a request to this API server deployed on EC2.
+
+
 # Configurations
 
 ## React Native Expo
