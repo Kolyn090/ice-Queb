@@ -7,6 +7,10 @@ Please access via umass email address
 
 https://umass-my.sharepoint.com/:v:/g/personal/jianxinlin_umass_edu/EVM9eorCwU9JoPvWG8n014MBT5NeUJT7ckBUpOGaxeryew
 
+## CONTRIBUTION FILE
+
+You can find CONTRIBUTION.md in this repo.
+
 ## General Introduction
 
 Our project, named *ice Queb*, is a cross-platform mobile office hour queuing app (Web, iOS, and, Android). It provides students with real-time updates on the status of office hours (allow students to see how many people are queuing for an office hour section). Additionally, it enables students to remotely join queues for specific office hour sections.
