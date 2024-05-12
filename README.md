@@ -114,6 +114,7 @@ This is the same as option 1.
 For Mac user:
 
 ```bash
+chmod +x ./run.sh
 npm i
 ./run.sh https://api.icequeb.site
 ```
@@ -139,6 +140,8 @@ Password: Password1
 
 Go to this website: [ice-faculty.vercel.app](http://ice-faculty.vercel.app) 
 
+You can use this link on mobile devices as well.
+
 ### Option 2: Using Command-line
 
 ```bash
@@ -148,8 +151,6 @@ npm run dev
 ```
 
 Copy-paste the remote link to your browser. We recommend Google Chrome for the best outcome.
-
-You can use this link on mobile devices as well.
 
 ## Ice-Quef-test folder (Tests for Ice-Quef)
 
